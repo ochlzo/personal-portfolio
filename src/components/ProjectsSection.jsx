@@ -9,7 +9,7 @@ const projects = [
     image: "/projects/LNHS-SIS.png",
     tags: ["React", "Express.js", "JavaScript", "MySQL", "CSS"],
     demoUrl: "#",
-    githubUrl: "#",
+    githubUrl: "https://github.com/ochlzo/LNHS-SIS",
   },
 
   {
@@ -19,7 +19,7 @@ const projects = [
     image: "/projects/MENU-of-APPLICATIONS.png",
     tags: ["HTML", "CSS", "PHP"],
     demoUrl: "#",
-    githubUrl: "#",
+    githubUrl: "https://github.com/ochlzo/Menu-of-Applications",
   },
 
   {
@@ -28,9 +28,9 @@ const projects = [
     description:
       "A Simulation of a Student Registration System built using Jasva Swing.",
     image: "/projects/STUDENT-REGISTRATION-SYSTEM-JAVA-SWING.png",
-    tags: ["Java"],
+    tags: ["Java", "Java Swing"],
     demoUrl: "#",
-    githubUrl: "#",
+    githubUrl: "https://github.com/ochlzo/Student-Registration-System",
   },
 ];
 
@@ -52,7 +52,7 @@ export const ProjectsSection = () => {
           {projects.map((project, key) => (
             <div
               key={key}
-              className="group bg-card rounded-lg overflow-hidden shadow xs card-hover"
+              className="group bg-card rounded-lg overflow-hidden shadow xs card-hover flex flex-col"
             >
               <div className="h-48 overflow-hidden">
                 <img
@@ -62,19 +62,27 @@ export const ProjectsSection = () => {
                 />
               </div>
 
-              <div className="p-6">
-                <div className="flex flex-wrap gap-2 mb-4"></div>
-                {project.tags.map((tag) => (
-                  <span className="px-2 py-1 text-xs font-medium rounded-full border bg-secondary text-secondary-foreground">
-                    {tag}
-                  </span>
-                ))}
+              <div className="p-6 flex flex-col flex-grow">
+                <div className="flex flex-wrap gap-2 mb-2">
+                  {project.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2 py-2 text-xs font-medium rounded-full border bg-secondary text-secondary-foreground"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
 
-                <h3 className="text-xl font-semibold mb-1">{project.title}</h3>
-                <p className="text-muted-foreground text-sm mb-4">
+                <h3 className="pt-2 text-xl font-semibold mb-1">
+                  {project.title}
+                </h3>
+                <p className="text-muted-foreground text-sm mb-4 flex-grow">
                   {project.description}
                 </p>
-                <div className="flex justify-between items-center">
+
+                {/* Bottom-aligned icons */}
+                <div className="mt-auto flex justify-between items-center">
                   <div className="flex space-x-3">
                     <a
                       href={project.demoUrl}
