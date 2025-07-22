@@ -1,39 +1,6 @@
 import { ExternalLinkIcon, Github, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
-
-const projects = [
-  {
-    id: 1,
-    title: "LNHS SIS",
-    description:
-      "A Student Information System built using React and Express.js.",
-    image: "/projects/LNHS-SIS.png",
-    tags: ["React", "Express.js", "JavaScript", "MySQL", "CSS"],
-    demoUrl: "#",
-    githubUrl: "https://github.com/ochlzo/LNHS-SIS",
-  },
-
-  {
-    id: 2,
-    title: "Menu of Applications",
-    description: "A school project made for PHP exercises.",
-    image: "/projects/MENU-of-APPLICATIONS.png",
-    tags: ["HTML", "CSS", "PHP"],
-    demoUrl: "#",
-    githubUrl: "https://github.com/ochlzo/Menu-of-Applications",
-  },
-
-  {
-    id: 3,
-    title: "Student Registration System",
-    description:
-      "A Simulation of a Student Registration System built using Jasva Swing.",
-    image: "/projects/STUDENT-REGISTRATION-SYSTEM-JAVA-SWING.png",
-    tags: ["Java", "Java Swing"],
-    demoUrl: "#",
-    githubUrl: "https://github.com/ochlzo/Student-Registration-System",
-  },
-];
+import { projects } from "@/data/projects";
 
 export const ProjectsSection = () => {
   return (
@@ -45,8 +12,8 @@ export const ProjectsSection = () => {
         </h2>
 
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Here are some of my recent projects. Each project was carefully
-          crafted with attention to detail, performance, and user experience.
+          Here are some of my recent projects. Each project was crafted using
+          the concepts I learned from school.
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
