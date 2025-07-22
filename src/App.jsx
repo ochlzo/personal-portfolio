@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { NotFound } from "./pages/NotFound";
 import { ProjectDetails } from "./pages/ProjectDetailsPage";
-import { Navbar } from "@/components/Navbar";
+import { Navbar } from "@/components/NavBar";
 import { StarBackground } from "@/components/StarBackground";
 import { Footer } from "@/components/FooterSection";
 
