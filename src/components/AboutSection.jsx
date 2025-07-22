@@ -1,4 +1,4 @@
-import { Briefcase, Code, Users } from "lucide-react";
+import { BookOpen, Server, Code, Palette } from "lucide-react";
 
 export const AboutSection = () => {
   return (
@@ -12,19 +12,29 @@ export const AboutSection = () => {
           <div className="space-y-6">
             <h3 className="text-2xl font-semibold">
               {" "}
-              Passionate Web Dev and Tech Creator
+              Passionate BSIT Student and Aspiring Web/Software Developer
             </h3>
 
             <p className="text-muted-foreground">
-              aokdfhaodksanlsdkansdlaknsdladknsaldknalsdknal
-              alsjkdhaklsdhjalsdkalsdkalsdkalsdkjalsdkadls
-              asldjnalsdkalsdkjalsdkajlsdkas
+              I'm a tech-driven 2nd-year BSIT student with a passion for solving
+              real-world problems through technology. I enjoy the challenge of
+              building things from the ground up—particularly focusing on
+              backend logic and full-stack development using tools like React,
+              JavaScript, and MySQL. Most of my experience comes from
+              school-based team projects, where I've grown both as a developer
+              and a collaborator. My goal is to become a full-stack developer,
+              software engineer, or even pursue freelance and game development
+              in the future.
             </p>
 
             <p className="text-muted-foreground">
-              aokdfhaodksanlsdkansdlaknsdladknsaldknalsdknal
-              alsjkdhaklsdhjalsdkalsdkalsdkalsdkjalsdkadls
-              asldjnalsdkalsdkjalsdkajlsdkas
+              Outside of code, I find joy in sharing knowledge and helping
+              others learn—something that strengthens my own skills. I'm a quick
+              and curious learner, always eager to pick up new technologies and
+              improve. In my downtime, you’ll find me jamming on the drums,
+              exploring music, or expressing myself through small art projects.
+              My creative energy and logical mindset help me approach
+              development with both structure and innovations
             </p>
 
             <div className="flex flex-col md:flex-row gap-4 pt-4 justify-center">
@@ -47,13 +57,35 @@ export const AboutSection = () => {
             <div className="gradient-border p-6 card-hover">
               <div className="flex items-start gap-4">
                 <div className="p-3 rounded-full bg-primary/10">
+                  <Server className="h-6 w-6 text-primary" />
+                </div>
+                <div className="text-left">
+                  <h4 className="font-semibold text-lg">
+                    {" "}
+                    Backend Development
+                  </h4>
+                  <p className="text-muted-foreground">
+                    {" "}
+                    Building robust server-side logic and APIs using Express.js,
+                    MySQL, and Express.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="gradient-border p-6 card-hover">
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-full bg-primary/10">
                   <Code className="h-6 w-6 text-primary" />
                 </div>
                 <div className="text-left">
-                  <h4 className="font-semibold text-lg"> Web Development</h4>
+                  <h4 className="font-semibold text-lg">
+                    {" "}
+                    CLI and Desktop Applications
+                  </h4>
                   <p className="text-muted-foreground">
                     {" "}
-                    Creating Responsive web Applications with modern frameworks.
+                    Developing functional command-line tools and Java-based GUI
+                    applications.
                   </p>
                 </div>
               </div>
@@ -61,14 +93,16 @@ export const AboutSection = () => {
             <div className="gradient-border p-6 card-hover">
               <div className="flex items-start gap-4">
                 <div className="p-3 rounded-full bg-primary/10">
-                  <Users className="h-6 w-6 text-primary" />
+                  <BookOpen className="h-6 w-6 text-primary" />
                 </div>
                 <div className="text-left">
-                  <h4 className="font-semibold text-lg"> UI/UX Design </h4>
+                  <h4 className="font-semibold text-lg">
+                    Teaching & Mentoring
+                  </h4>
                   <p className="text-muted-foreground">
                     {" "}
-                    Designing intuitive user interfaces and seamless user
-                    experiences.
+                    Helping peers understand concepts by simplifying code and
+                    sharing insights.
                   </p>
                 </div>
               </div>
@@ -76,14 +110,17 @@ export const AboutSection = () => {
             <div className="gradient-border p-6 card-hover">
               <div className="flex items-start gap-4">
                 <div className="p-3 rounded-full bg-primary/10">
-                  <Briefcase className="h-6 w-6 text-primary" />
+                  <Palette className="h-6 w-6 text-primary" />
                 </div>
                 <div className="text-left">
-                  <h4 className="font-semibold text-lg"> Project Management</h4>
+                  <h4 className="font-semibold text-lg">
+                    {" "}
+                    Creative Exploration
+                  </h4>
                   <p className="text-muted-foreground">
                     {" "}
-                    Leading projects from conception to completion with agile
-                    methodologies.
+                    Blending logic and creativity through music, art, and UI
+                    design inspiration.
                   </p>
                 </div>
               </div>

@@ -21,7 +21,7 @@ export const HeroSection = () => {
           <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto opacity-0 animate-fade-in-delay-4">
             Tech-savvy 2nd-year BSIT student with project-based experience in
             full-stack development using React, HTML, CSS, Javascript, and MySQL
-            (and other CLI Applications using C and C++ and Java based mini
+            (and other CLI Applications using C, C++, and Java based mini
             projects). Passionate about building practical applications and
             learning through collaboration and hands-on coding.
           </p>

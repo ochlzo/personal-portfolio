@@ -4,27 +4,35 @@ import { cn } from "@/lib/utils";
 const skills = [
   // Frontend
   { name: "HTML/CSS", level: 95, category: "frontend" },
-  { name: "JavaScript", level: 90, category: "frontend" },
-  { name: "React", level: 90, category: "frontend" },
-  { name: "TypeScript", level: 85, category: "frontend" },
-  { name: "Tailwind CSS", level: 90, category: "frontend" },
-  { name: "Next.js", level: 80, category: "frontend" },
+  { name: "JavaScript", level: 70, category: "frontend" },
+  { name: "React", level: 70, category: "frontend" },
+  { name: "Tailwind CSS", level: 50, category: "frontend" },
+  { name: "Bootsrap CSS", level: 60, category: "frontend" },
 
   // Backend
-  { name: "Node.js", level: 80, category: "backend" },
-  { name: "Express", level: 75, category: "backend" },
-  { name: "MongoDB", level: 70, category: "backend" },
-  { name: "PostgreSQL", level: 65, category: "backend" },
-  { name: "GraphQL", level: 60, category: "backend" },
+  { name: "Express.js", level: 75, category: "backend" },
+  { name: "MySQL", level: 85, category: "backend" },
+
+  // Other
+  { name: "C", level: 87, category: "other languages" },
+  { name: "C++", level: 85, category: "other languages" },
+  { name: "Java/Java Swing", level: 89, category: "other languages" },
 
   // Tools
-  { name: "Git/GitHub", level: 90, category: "tools" },
-  { name: "Docker", level: 70, category: "tools" },
-  { name: "Figma", level: 85, category: "tools" },
+  { name: "Git/GitHub", level: 75, category: "tools" },
+  { name: "Figma", level: 75, category: "tools" },
   { name: "VS Code", level: 95, category: "tools" },
+  { name: "Dev C++", level: 90, category: "tools" },
+  { name: "NetBeans", level: 90, category: "tools" },
 ];
 
-const categories = ["all", "frontend", "backend", "tools"];
+const getColor = (level) => {
+  if (level >= 85) return "bg-green-500";
+  if (level >= 70) return "bg-yellow-500";
+  return "bg-red-500";
+};
+
+const categories = ["all", "frontend", "backend", "other languages", "tools"];
 
 export const SkillsSection = () => {
   const [activeCategory, setActiveCategory] = useState("all");
@@ -46,10 +54,10 @@ export const SkillsSection = () => {
               key={key}
               onClick={() => setActiveCategory(category)}
               className={cn(
-                "px-5 py-2 rounded-full transition-colors duration-300 capitalize",
+                "px-5 py-2 rounded-full border shadow-sm transition-all duration-300 capitalize",
                 activeCategory === category
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-secondary/70 text-foreground hover:bg-secondary"
+                  ? "bg-primary text-white border-primary shadow-md"
+                  : "bg-background text-foreground border-border hover:shadow-md hover:border-foreground"
               )}
             >
               {category}
@@ -64,19 +72,22 @@ export const SkillsSection = () => {
               className="bg-card p-6 rounded0-lg shadow-xs card-hover"
             >
               <div className="text-left mb-4">
-                <h3 className="font-semibold text-lg">{skill.name}</h3>
+                <h3 className="font-semibold text-lg flex items-center gap-2">
+                  🛠 {skill.name}
+                </h3>
               </div>
-              <div className="w-full">
+              <div className="relative w-full">
                 <div className="bg-secondary/50 rounded-full h-2 overflow-hidden">
                   <div
-                    className="bg-primary h-2 rounded-full origin-left"
+                    className={cn(
+                      "h-2 rounded-full transition-all duration-700 ease-in-out",
+                      getColor(skill.level)
+                    )}
                     style={{ width: skill.level + "%" }}
                   />
                 </div>
-                <div className="text-right mt-1">
-                  <span className="text-sm text-muted-foreground">
-                    {skill.level}%
-                  </span>
+                <div className="absolute top-[-1.5rem] right-0 text-sm text-muted-foreground">
+                  {skill.level}%
                 </div>
               </div>
             </div>
