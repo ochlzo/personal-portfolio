@@ -47,26 +47,26 @@ export const ContactSection = () => {
               </h3>
 
               <div className="space-y-6">
-                <div className="flex items-start space-x-4">
+                <div className="flex items-center space-x-8">
                   <div className="p-3 rounded-full bg-primary/10">
                     <Mail className="h-6 w-6 text-primary" />
                   </div>
-                  <div>
+                  <div className="text-left w-full">
                     <h4 className="font-medium">Email</h4>
                     <a
-                      href="mailto:jbbc2023-4132-17458@bicol-u.edu.ph"
+                      href="mailto:johnbenedictkandelarya@gmail.com"
                       className="text-muted-foreground hover:text-primary transition-colors"
                     >
-                      jbbc2023-4132-17458@bicol-u.edu.ph
+                      johnbenedictkandelarya@gmail.com
                     </a>
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4">
+                <div className="flex items-center space-x-8">
                   <div className="p-3 rounded-full bg-primary/10">
                     <Phone className="h-6 w-6 text-primary" />
                   </div>
-                  <div>
+                  <div className="text-left w-full">
                     <h4 className="font-medium">Phone</h4>
                     <a
                       href="tel:+639770375772"
@@ -77,11 +77,11 @@ export const ContactSection = () => {
                   </div>
                 </div>
 
-                <div className="flex items-start space-x-4">
+                <div className="flex items-center space-x-8">
                   <div className="p-3 rounded-full bg-primary/10">
                     <MapPin className="h-6 w-6 text-primary" />
                   </div>
-                  <div>
+                  <div className="text-left w-full">
                     <h4 className="font-medium">Location</h4>
                     <p className="text-muted-foreground hover:text-primary transition-colors cursor-pointer">
                       P2, Maguiron, Guinobatan, Albay, Philippines
