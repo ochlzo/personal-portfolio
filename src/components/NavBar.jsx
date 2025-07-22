@@ -4,6 +4,7 @@ import { X, Menu } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { MobileMenuOverlay } from "./MobileMenuOverlay";
 import { cn } from "@/lib/utils";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const navItems = [
   { name: "Home", href: "#hero" },
@@ -16,6 +17,19 @@ const navItems = [
 export const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleNavClick = (id) => {
+    if (location.pathname !== "/") {
+      navigate("/", { state: { scrollTo: id } });
+    } else {
+      const section = document.getElementById(id);
+      if (section) {
+        section.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,6 +63,9 @@ export const Navbar = () => {
             <a
               className="text-xl font-bold text-primary flex-items ml-5"
               href="#hero"
+              onClick={() => {
+                handleNavClick("hero");
+              }}
             >
               <span className="relative z-10">
                 <span className="text-glow text-foreground">Cholo</span>{" "}
@@ -62,6 +79,10 @@ export const Navbar = () => {
             {navItems.map((item, key) => (
               <a
                 key={key}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick(item.href.replace("#", ""));
+                }}
                 className="text-foreground/80 hover:text-primary transition-colors duration-300"
                 href={item.href}
               >

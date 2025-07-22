@@ -1,4 +1,5 @@
 import { ExternalLinkIcon, Github, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const projects = [
   {
@@ -49,9 +50,10 @@ export const ProjectsSection = () => {
         </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {projects.map((project, key) => (
-            <div
-              key={key}
+          {projects.map((project) => (
+            <Link
+              key={project.id}
+              to={`/projects/${project.id}`}
               className="group bg-card rounded-lg overflow-hidden shadow xs card-hover flex flex-col"
             >
               <div className="h-48 overflow-hidden">
@@ -81,29 +83,18 @@ export const ProjectsSection = () => {
                   {project.description}
                 </p>
 
-                {/* Bottom-aligned icons */}
                 <div className="mt-auto flex justify-between items-center">
                   <div className="flex space-x-3">
-                    <a
-                      href={project.demoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                    >
+                    <span className="text-foreground/80">
                       <ExternalLinkIcon size={20} />
-                    </a>
-                    <a
-                      href={project.githubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                    >
+                    </span>
+                    <span className="text-foreground/80">
                       <Github size={20} />
-                    </a>
+                    </span>
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 
