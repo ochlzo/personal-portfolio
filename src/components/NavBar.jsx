@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { X, Menu } from "lucide-react";
+import { ThemeToggle } from "./ThemeToggle";
 
 const navItems = [
   { name: "Home", href: "#hero" },
@@ -29,19 +30,24 @@ export const Navbar = () => {
     <nav
       className={cn(
         "fixed w-full z-40 transition-all duration-300",
-        isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-xs" : "py-5"
+        isScrolled ? "py-6 bg-background/80 backdrop-blur-md shadow-xs" : "py-8"
       )}
     >
-      <div className="container flex items-center justify-between">
-        <a className="text-xl font-bold text-primary flex-items" href="#hero">
-          <span className="relative z-10">
-            <span className="text-glow text-foreground"> Cholo </span>{" "}
-            Candelaria
-          </span>
-        </a>
+      <div className="container flex items-center">
+        <div className="absolute top-1/2 left-[1%] -translate-y-1/2">
+          <a
+            className="text-xl font-bold text-primary flex-items ml-5"
+            href="#hero"
+          >
+            <span className="relative z-10">
+              <span className="text-glow text-foreground"> Cholo </span>{" "}
+              Candelaria
+            </span>
+          </a>
+        </div>
 
         {/* desktop navbar */}
-        <div className="hidden md:flex space-x-8">
+        <div className="hidden md:flex space-x-8 absolute top-1/2 right-[10%] -translate-y-1/2">
           {navItems.map((item, key) => (
             <a
               key={key}
@@ -54,10 +60,13 @@ export const Navbar = () => {
         </div>
 
         {/* mobile navbar */}
+        <div className="absolute top-1/2 right-[1%] -translate-y-1/2">
+          <ThemeToggle />
+        </div>
 
         <button
           onClick={() => setIsMenuOpen((prev) => !prev)}
-          className="md:hidden p-2 text-foreground z-50"
+          className="md:hidden p-2 text-foreground z-50 absolute top-1/2 right-[8%] -translate-y-1/2"
           aria-label={isMenuOpen ? "Close menu" : "Open menu"}
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
