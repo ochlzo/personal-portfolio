@@ -1,7 +1,9 @@
-import { cn } from "@/lib/utils";
+// components/Navbar.jsx
 import { useEffect, useState } from "react";
 import { X, Menu } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
+import { MobileMenuOverlay } from "./MobileMenuOverlay";
+import { cn } from "@/lib/utils";
 
 const navItems = [
   { name: "Home", href: "#hero" },
@@ -19,82 +21,76 @@ export const Navbar = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 10);
     };
-
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+  }, [isMenuOpen]);
+
   return (
-    <nav
-      className={cn(
-        "fixed w-full z-40 transition-all duration-300",
-        isScrolled ? "py-6 bg-background/80 backdrop-blur-md shadow-xs" : "py-8"
-      )}
-    >
-      <div className="container flex items-center">
-        <div className="absolute top-1/2 left-[1%] -translate-y-1/2">
-          <a
-            className="text-xl font-bold text-primary flex-items ml-5"
-            href="#hero"
-          >
-            <span className="relative z-10">
-              <span className="text-glow text-foreground"> Cholo </span>{" "}
-              Candelaria
-            </span>
-          </a>
-        </div>
-
-        {/* desktop navbar */}
-        <div className="hidden md:flex space-x-8 absolute top-1/2 right-[10%] -translate-y-1/2">
-          {navItems.map((item, key) => (
+    <>
+      <nav
+        className={cn(
+          "fixed w-full z-40 transition-all duration-300",
+          isScrolled
+            ? "py-6 bg-background/80 backdrop-blur-md shadow-xs"
+            : "py-8"
+        )}
+      >
+        <div className="container flex items-center">
+          {/* Left: Logo */}
+          <div className="absolute top-1/2 left-[0] -translate-y-1/2">
             <a
-              key={key}
-              className="text-foreground/80 hover:text-primary transiyion-colors duration-300"
-              href={item.href}
+              className="text-xl font-bold text-primary flex-items ml-5"
+              href="#hero"
             >
-              {item.name}
+              <span className="relative z-10">
+                <span className="text-glow text-foreground">Cholo</span>{" "}
+                Candelaria
+              </span>
             </a>
-          ))}
-        </div>
+          </div>
 
-        {/* mobile navbar */}
-        <div className="absolute top-1/2 right-[1%] -translate-y-1/2">
-          <ThemeToggle />
-        </div>
-
-        <button
-          onClick={() => setIsMenuOpen((prev) => !prev)}
-          className="md:hidden p-2 text-foreground z-50 absolute top-1/2 right-[8%] -translate-y-1/2"
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-
-        <div
-          className={cn(
-            "fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center",
-            "transition-all duration-300 md:hidden",
-            isMenuOpen
-              ? "opacity-100 pointer-events-auto"
-              : "opacity-0 pointer-events-none"
-          )}
-        >
-          <div className="flex flex-col space-y-8">
+          {/* Desktop nav items */}
+          <div className="hidden md:flex space-x-8 absolute top-1/2 right-[10%] -translate-y-1/2">
             {navItems.map((item, key) => (
               <a
                 key={key}
-                className="text-foreground/80 hover:text-primary transiyion-colors duration-300"
+                className="text-foreground/80 hover:text-primary transition-colors duration-300"
                 href={item.href}
-                onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
               </a>
             ))}
           </div>
+
+          {/* Mobile: Theme Toggle */}
+          <div className="absolute top-1/2 right-[1%] -translate-y-1/2">
+            <ThemeToggle />
+          </div>
+
+          {/* Mobile: Hamburger */}
+          <button
+            onClick={() => setIsMenuOpen(true)}
+            className="md:hidden p-2 text-foreground z-50 absolute top-1/2 right-[8%] -translate-y-1/2"
+            aria-label="Open menu"
+          >
+            <Menu size={24} />
+          </button>
         </div>
-      </div>
-    </nav>
+      </nav>
+
+      {/* Mobile Menu Overlay */}
+      <MobileMenuOverlay
+        isMenuOpen={isMenuOpen}
+        setIsMenuOpen={setIsMenuOpen}
+      />
+    </>
   );
 };
