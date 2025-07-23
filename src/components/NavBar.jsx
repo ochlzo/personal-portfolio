@@ -24,10 +24,13 @@ export const Navbar = () => {
     if (location.pathname !== "/") {
       navigate("/", { state: { scrollTo: id } });
     } else {
-      const section = document.getElementById(id);
-      if (section) {
-        section.scrollIntoView({ behavior: "smooth" });
-      }
+      // Use setTimeout to ensure the section is rendered before scrolling
+      setTimeout(() => {
+        const section = document.getElementById(id);
+        if (section) {
+          section.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 0);
     }
   };
 
@@ -63,7 +66,8 @@ export const Navbar = () => {
             <a
               className="text-xl font-bold text-primary flex-items ml-5"
               href="#hero"
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 handleNavClick("hero");
               }}
             >

@@ -2,10 +2,19 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { projects } from "@/data/projects";
 import { ExternalLinkIcon, Github } from "lucide-react";
+import { useEffect } from "react";
+import { useNavigationType } from "react-router-dom";
 
 export const ProjectDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const navigationType = useNavigationType();
+
+  useEffect(() => {
+    if (navigationType === "PUSH") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, [navigationType]);
 
   const project = projects.find((p) => p.id === parseInt(id));
 
