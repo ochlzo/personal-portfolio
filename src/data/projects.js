@@ -21,6 +21,7 @@ export const projects = [
       "/projects/screenshots/LNHS-11.png",
     ],
     tags: ["React", "Express.js", "JavaScript", "MySQL", "CSS"],
+    year: "2025(Ongoing)",
     demoUrl: "#",
     githubUrl: "https://github.com/ochlzo/LNHS-SIS",
   },

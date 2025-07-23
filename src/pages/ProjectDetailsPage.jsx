@@ -8,27 +8,54 @@ export const ProjectDetails = () => {
 
   const project = projects.find((p) => p.id === parseInt(id));
 
+  const technologies = project.tags.join(", ");
+
   if (!project) {
     return <div className="p-6">Project not found.</div>;
   }
 
   return (
-    <div className="py-15 px-60 md:px-30 sm:px-10 relative">
-      <div>
+    <div className="py-15 relative">
+      <div className="px-5 md:px-0 lg:px-50">
         <img src={project.image} alt={project.title} className="rounded-lg" />
       </div>
 
-      <h1 className="text-3xl font-bold mb-2">{project.title}</h1>
-      <p className="text-muted-foreground mb-6">{project.details}</p>
+      <div className="px-5 md:px-0 lg:px-50 py-6">
+        <div className="border-b border-white/40 pb-6">
+          <div className="flex flex-col md:flex-row md:items-start md:gap-8">
+            {/* Table for headers and values */}
+            <table className="min-w-max text-left md:w-auto md:mb-0 mb-6">
+              <tbody>
+                <tr>
+                  <th className="text-primary font-bold tracking-widest text-lg pr-8 align-top">TECHNOLOGIES</th>
+                  <td className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto">
+                    {technologies}
+                  </td>
+                </tr>
+                <tr>
+                  <th className="text-primary font-bold tracking-widest text-lg pr-8 align-top">YEAR</th>
+                  <td className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto">{project.year || '—'}</td>
+                </tr>
+              </tbody>
+            </table>
+            {/* Description: below table on mobile, right of table on desktop */}
+            <p className="text-lg md:text-xl text-muted-foreground max-2-2xl mx-auto">
+              {project.details}
+            </p>
+          </div>
+        </div>
+      </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+      <div className="px-5 md:px-0 lg:px-50">
         {project.screenshots.map((src, index) => (
-          <img
-            key={index}
-            src={src}
-            alt={`Screenshot ${index + 1}`}
-            className="rounded-md border"
-          />
+          <div className="py-6">
+            <img
+              key={index}
+              src={src}
+              alt={`Screenshot ${index + 1}`}
+              className="rounded-lg"
+            />
+          </div>
         ))}
       </div>
 
