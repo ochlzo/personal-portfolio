@@ -5,10 +5,9 @@ export const projects = [
     description:
       "A Student Information System built using React and Express.js.",
     details:
-      "This system was built for managing student records at Ligao National High School. It includes features such as student registration, academic info management, and section filtering using React and Express.js.",
+      "This system was developed for Ligao National High School to efficiently manage student records. Built using React for the frontend and Express.js for the backend, it offers features such as student registration, academic information and grade management, printable academic records and report cards, user role management, a customizable grading system, and section and class management. The platform is designed to streamline administrative workflows and provide a user-friendly experience for school staff.",
     image: "/projects/LNHS-SIS.png",
     screenshots: [
-      "/projects/screenshots/LNHS-1.png",
       "/projects/screenshots/LNHS-2.png",
       "/projects/screenshots/LNHS-3.png",
       "/projects/screenshots/LNHS-4.png",
@@ -22,7 +21,8 @@ export const projects = [
     ],
     tags: ["React", "Express.js", "JavaScript", "MySQL", "CSS"],
     year: "2025(Ongoing)",
-    demoUrl: "#",
+    team: "Solo",
+    demoUrl: "_blank",
     githubUrl: "https://github.com/ochlzo/LNHS-SIS",
   },
 
