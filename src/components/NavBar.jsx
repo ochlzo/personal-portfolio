@@ -1,10 +1,10 @@
 // components/Navbar.jsx
 import { useEffect, useState } from "react";
-import { X, Menu } from "lucide-react";
+import { X, Menu, ArrowLeft } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 import { MobileMenuOverlay } from "./MobileMenuOverlay";
 import { cn } from "@/lib/utils";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 
 const navItems = [
   { name: "Home", href: "#hero" },
@@ -24,7 +24,6 @@ export const Navbar = () => {
     if (location.pathname !== "/") {
       navigate("/", { state: { scrollTo: id } });
     } else {
-      // Use setTimeout to ensure the section is rendered before scrolling
       setTimeout(() => {
         const section = document.getElementById(id);
         if (section) {
@@ -61,21 +60,33 @@ export const Navbar = () => {
         )}
       >
         <div className="container flex items-center">
-          {/* Left: Logo */}
+          {/* Left: Logo or Back Arrow */}
           <div className="absolute top-1/2 left-[0] -translate-y-1/2">
-            <a
-              className="text-xl font-bold text-primary flex-items ml-5"
-              href="#hero"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick("hero");
-              }}
-            >
-              <span className="relative z-10">
-                <span className="text-glow text-foreground">Cholo</span>{" "}
-                Candelaria
-              </span>
-            </a>
+            {location.pathname !== "/" ? (
+              <Link
+                to="/"
+                state={{ scrollTo: "projects" }}
+                className="flex items-center gap-2 text-primary font-bold text-xl ml-5 hover:text-primary/80 transition-colors"
+                aria-label="Back to Projects"
+              >
+                <ArrowLeft className="h-6 w-6" />
+                <span className="hidden sm:inline">Back to Projects</span>
+              </Link>
+            ) : (
+              <a
+                className="text-xl font-bold text-primary flex-items ml-5"
+                href="#hero"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick("hero");
+                }}
+              >
+                <span className="relative z-10">
+                  <span className="text-glow text-foreground">Cholo</span>{" "}
+                  Candelaria
+                </span>
+              </a>
+            )}
           </div>
 
           {/* Desktop nav items */}

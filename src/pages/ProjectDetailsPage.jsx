@@ -4,6 +4,7 @@ import { projects } from "@/data/projects";
 import { ExternalLinkIcon, Github } from "lucide-react";
 import { useEffect } from "react";
 import { useNavigationType } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export const ProjectDetails = () => {
   const { id } = useParams();
@@ -11,17 +12,27 @@ export const ProjectDetails = () => {
   const navigationType = useNavigationType();
 
   useEffect(() => {
-    if (navigationType === "PUSH") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  }, [navigationType]);
+    window.scrollTo({ top: 0 });
+  }, [id]);
 
   const project = projects.find((p) => p.id === parseInt(id));
-
-  const technologies = project.tags.join(", ");
+  const projectIndex = projects.findIndex((p) => p.id === parseInt(id));
+  const nextProject = projects[projectIndex + 1];
+  const prevProject = projects[projectIndex - 1];
+  const isFirstProject = project && project.id === 1;
+  const isLastProject = project && projectIndex === projects.length - 1;
+  const technologies = project ? project.tags.join(", ") : "";
 
   if (!project) {
-    return <div className="p-6">Project not found.</div>;
+    return (
+      <div className="p-6">
+        Project not found.
+        <div className="flex gap-4 justify-center mt-6">
+          <button className="text-sm bg-primary text-white px-4 py-2 rounded opacity-50 cursor-not-allowed pointer-events-none">Next Project</button>
+          <button className="text-sm bg-primary text-white px-4 py-2 rounded opacity-50 cursor-not-allowed pointer-events-none">Back</button>
+        </div>
+      </div>
+    );
   }
 
   return (
@@ -92,24 +103,47 @@ export const ProjectDetails = () => {
         ))}
       </div>
 
-      <div className="flex gap-4">
-        <a
-          href={project.githubUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sm bg-primary text-white px-4 py-2 rounded"
-        >
-          View Code
-        </a>
-        {project.demoUrl !== "#" && (
-          <a
-            href={project.demoUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm bg-secondary text-foreground px-4 py-2 rounded"
+      <div className="flex gap-4 justify-center mt-8">
+        {/* Next Project Button */}
+        {nextProject ? (
+          <Link
+            to={`/projects/${nextProject.id}`}
+            className="text-sm bg-primary text-white px-4 py-2 rounded hover:bg-primary/80"
           >
-            Live Demo
-          </a>
+            Next Project
+          </Link>
+        ) : (
+          <button
+            className="text-sm bg-primary text-white px-4 py-2 rounded opacity-50 cursor-not-allowed pointer-events-none"
+            disabled
+          >
+            Next Project
+          </button>
+        )}
+
+        {/* Back Button */}
+        {isFirstProject ? (
+          <Link
+            to="/"
+            state={{ scrollTo: "projects" }}
+            className="text-sm bg-primary text-white px-4 py-2 rounded hover:bg-primary/80"
+          >
+            Back to Projects
+          </Link>
+        ) : prevProject ? (
+          <Link
+            to={`/projects/${prevProject.id}`}
+            className="text-sm bg-primary text-white px-4 py-2 rounded hover:bg-primary/80"
+          >
+            Back
+          </Link>
+        ) : (
+          <button
+            className="text-sm bg-primary text-white px-4 py-2 rounded opacity-50 cursor-not-allowed pointer-events-none"
+            disabled
+          >
+            Back
+          </button>
         )}
       </div>
     </div>
