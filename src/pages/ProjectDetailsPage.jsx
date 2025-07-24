@@ -38,7 +38,7 @@ export const ProjectDetails = () => {
   return (
     <div className="py-15 relative">
       <div className="px-5 md:px-0 lg:px-0 xl:px-40 2xl:px-50">
-        <img src={project.image} alt={project.title} className="rounded-lg" />
+        <img src={project.image} alt={project.title} className="rounded-4xl" />
       </div>
 
       <div className="px-5 md:px-0 lg:px-0 xl:px-40 2xl:px-50">
