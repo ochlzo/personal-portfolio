@@ -72,4 +72,28 @@ export const projects = [
     demoUrl: "#",
     githubUrl: "https://github.com/ochlzo/Student-Registration-System",
   },
+
+  {
+    id: 4,
+    title: "Student Registration System",
+    description:
+      "A Simulation of a Student Registration System built using Jasva Swing.",
+    image: "/projects/STUDENT-REGISTRATION-SYSTEM-JAVA-SWING.png",
+    screenshots: [
+      "/projects/screenshots/LNHS-1.png",
+      "/projects/screenshots/LNHS-2.png",
+      "/projects/screenshots/LNHS-3.png",
+      "/projects/screenshots/LNHS-4.png",
+      "/projects/screenshots/LNHS-5.png",
+      "/projects/screenshots/LNHS-6.png",
+      "/projects/screenshots/LNHS-7.png",
+      "/projects/screenshots/LNHS-8.png",
+      "/projects/screenshots/LNHS-9.png",
+      "/projects/screenshots/LNHS-10.png",
+      "/projects/screenshots/LNHS-11.png",
+    ],
+    tags: ["Java", "Java Swing"],
+    demoUrl: "#",
+    githubUrl: "https://github.com/ochlzo/Student-Registration-System",
+  },
 ];
