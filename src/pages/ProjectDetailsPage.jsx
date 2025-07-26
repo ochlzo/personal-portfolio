@@ -2,7 +2,7 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { projects } from "@/data/projects";
 import { ExternalLinkIcon, Github } from "lucide-react";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { useNavigationType } from "react-router-dom";
 import { Link } from "react-router-dom";
 
@@ -10,9 +10,15 @@ export const ProjectDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const navigationType = useNavigationType();
+  const detailsRef = useRef(null);
 
   useEffect(() => {
-    window.scrollTo({ top: 0 });
+    if (detailsRef.current) {
+      const offset = 500;
+      const top = detailsRef.current.getBoundingClientRect().top + window.scrollY - offset;
+  
+      window.scrollTo({ top, behavior: "smooth" });
+    }
   }, [id]);
 
   const project = projects.find((p) => p.id === parseInt(id));
@@ -20,7 +26,6 @@ export const ProjectDetails = () => {
   const nextProject = projects[projectIndex + 1];
   const prevProject = projects[projectIndex - 1];
   const isFirstProject = project && project.id === 1;
-  const isLastProject = project && projectIndex === projects.length - 1;
   const technologies = project ? project.tags.join(", ") : "";
 
   if (!project) {
@@ -42,9 +47,16 @@ export const ProjectDetails = () => {
       </div>
 
       <div className="px-5 md:px-0 lg:px-0 xl:px-40 2xl:px-50">
-        <div className="bg-card rounded-lg shadow xs card-hover sm:max-w-sm max-w-lg my-6 py-2">
-          <p className="text-4xl md:text-6xl text-foreground font-bold transition-colors duration-300 tracking-tight py-3">{project.title}</p>
-        </div>
+      <div
+  className="bg-card rounded-lg shadow card-hover inline-block my-6 px-4 py-2"
+  ref={detailsRef}
+>
+  <p className="text-4xl md:text-6xl text-foreground font-bold tracking-tight whitespace-nowrap p-2">
+    {project.title}
+  </p>
+</div>
+
+
         <div className="py-0 flex flex-col md:flex-row md:items-start gap-0 md:gap-10 lg:gap-20 xl:gap-40 2xl:gap-50 border-t border-foreground/40">
           {/* Table for headers and values */}
           <table className="min-w-0 w-full md:w-auto mb-6 md:mb-0 text-left table-fixed">
@@ -64,7 +76,7 @@ export const ProjectDetails = () => {
               <tr className="align-top">
                 <th className="text-primary font-bold tracking-widest text-lg align-top whitespace-nowrap tracking-tight py-3">TEAM</th>
                 <td className="text-lg md:text-xl text-muted-foreground break-words whitespace-normal max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg xl:max-w-xl py-3">
-                  {project.team || '—'}
+                  {project.team || '—'} 
                 </td>
               </tr>
             </tbody>
@@ -103,48 +115,51 @@ export const ProjectDetails = () => {
         ))}
       </div>
 
-      <div className="flex gap-4 justify-center mt-8">
-        {/* Next Project Button */}
-        {nextProject ? (
-          <Link
-            to={`/projects/${nextProject.id}`}
-            className="text-sm bg-primary text-white px-4 py-2 rounded hover:bg-primary/80"
-          >
-            Next Project
-          </Link>
-        ) : (
-          <button
-            className="text-sm bg-primary text-white px-4 py-2 rounded opacity-50 cursor-not-allowed pointer-events-none"
-            disabled
-          >
-            Next Project
-          </button>
-        )}
-
-        {/* Back Button */}
-        {isFirstProject ? (
+      <div className="flex grid grid-cols-2 gap-[50%] 2xl:gap-[80%] xl:gap[80%] lg:gap-[70%] md:gap-[60%] justify-center mt-4 px-5 md:px-0 lg:px-0 xl:px-40 2xl:px-50">
+{/* Back Button */}
+{isFirstProject ? (
           <Link
             to="/"
             state={{ scrollTo: "projects" }}
-            className="text-sm bg-primary text-white px-4 py-2 rounded hover:bg-primary/80"
+            className="text-sm bg-primary cosmic-button text-white px-4 py-2 rounded hover:bg-primary/20"
           >
             Back to Projects
           </Link>
         ) : prevProject ? (
           <Link
             to={`/projects/${prevProject.id}`}
-            className="text-sm bg-primary text-white px-4 py-2 rounded hover:bg-primary/80"
+            className="text-sm bg-primary cosmic-button text-white px-4 py-2 rounded hover:bg-primary/20"
           >
             Back
           </Link>
         ) : (
           <button
-            className="text-sm bg-primary text-white px-4 py-2 rounded opacity-50 cursor-not-allowed pointer-events-none"
+            className="text-sm bg-primary cosmic-button text-white px-4 py-2 rounded opacity-50 cursor-not-allowed pointer-events-none"
             disabled
           >
             Back
           </button>
         )}
+
+
+        {/* Next Project Button */}
+        {nextProject ? (
+          <Link
+            to={`/projects/${nextProject.id}`}
+            className="text-sm bg-primary cosmic-button text-white px-4 py-2 rounded hover:bg-primary/20"
+          >
+            Next Project
+          </Link>
+        ) : (
+          <button
+            className="text-sm bg-primary cosmic-button text-white px-4 py-2 rounded opacity-50 cursor-not-allowed pointer-events-none"
+            disabled
+          >
+            Next Project
+          </button>
+        )}
+
+        
       </div>
     </div>
   );

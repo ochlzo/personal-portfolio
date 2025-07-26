@@ -1,7 +1,7 @@
 export const projects = [
   {
     id: 1,
-    title: "LNHS SIS",
+    title: "LNHS-SIS",
     description:
       "A Student Information System built using React and Express.js.",
     details:
@@ -21,7 +21,7 @@ export const projects = [
     ],
     tags: ["React", "Express.js", "JavaScript", "MySQL", "CSS"],
     year: "2025(Ongoing)",
-    team: "Solo",
+    team: "Me, Ralph, and Dan",
     demoUrl: "_blank",
     githubUrl: "https://github.com/ochlzo/LNHS-SIS",
   },
